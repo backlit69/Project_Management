@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Header from './Header';
 
 function SignUp(){
     // const namePattern = /^[a-z ,.'-]+$/
@@ -36,6 +37,7 @@ function SignUp(){
     }
 
     return <>
+    <Header/>
         <div className="container mt-5">
             <div className="row justify-content-center p-3">
                 <div className="col-md-4 text-center p-1 p-3" id='card'>
