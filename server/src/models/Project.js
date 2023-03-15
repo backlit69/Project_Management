@@ -1,17 +1,22 @@
 const mongoose = require("mongoose")
 
 const projectSchema = mongoose.Schema({
+    name:{
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
     },
     creator: {
         type: mongoose.Types.ObjectId,
-        ref: 'user'
+        ref: 'user',
+        required: true
     },
-    discussion: {
+    discussion: [{
         type: String
-    },
+    }],
     leaders: [{
         type: mongoose.Types.ObjectId,
         ref: 'user'
@@ -30,9 +35,6 @@ const projectSchema = mongoose.Schema({
         type: Map,
         of : [{
             type: new mongoose.Schema({
-                taskId: {
-                    type: String
-                },
                 assignerId: {
                     type: mongoose.Types.ObjectId,
                     ref: 'user'
