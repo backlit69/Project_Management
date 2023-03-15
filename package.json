@@ -1,0 +1,20 @@
+{
+  "name": "management",
+  "version": "1.0.0",
+  "description": "This project is intended to be the showcased in DevJam 2023 . This is a WebApp , centred around efficient project management.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backlit69/Project_Mangement.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/backlit69/Project_Mangement/issues"
+  },
+  "homepage": "https://github.com/backlit69/Project_Mangement#readme"
+}

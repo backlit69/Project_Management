@@ -1,0 +1,71 @@
+.notebtn{
+    color: white;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.671);
+    padding: 30px;
+    opacity: 1;
+  }
+  .popup-inner {
+    position: absolute;
+    color: black;
+    left: 15%;
+    right: 15%;
+    top: 15%;
+    bottom: 15%;
+    background-color: white;
+  }
+  .popUpdata{
+    font-size: 20px;
+  }
+  .deadline-section , .project-section, .note-section,.dashBoardContainer{
+    background-color: black;
+  }
+  .deadline-section h3{
+    background-color: black;
+  }
+  .noteInput{
+    background-color: black;
+    margin: 10px;
+  }
+  .projectName h4:hover{
+    font-size: 25px;
+  }
+  .notification{
+    width: 30%;
+  }
+  .DashboardHeading{
+    font-size: 80%;
+  }
+  .task-container{
+    background-color: rgb(23, 22, 22);
+  }
+  .task-input{
+    padding: 10px;
+    margin: 10px;
+  }
+  .belowNavbar{
+    border-radius: 20px;
+    padding: 10px;
+  }
+  .navImg{
+    height: 40px;
+    background-color: black;
+    border-radius: 40px;
+    border: 5px solid black;
+  }
+  .navImg:hover{
+    background-color: green;
+    border: 5px solid green;
+  }
