@@ -17,24 +17,34 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    projects : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'project'
-    },
+    projects : [{
+        type: new mongoose.Schema({
+            project: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'project',
+                required: true
+            }
+        },{timestamps: true})
+    }],
     notes : [{
         type: new mongoose.Schema({
             text: {
                 type: String
             }
         },{timestamps: true})}],
-    notification: [{
+    notifications: [{
         type: new mongoose.Schema({
-            category: String,
+            category: {
+                type: String
+            },
             text: {
-                type: String,
+                type: String
+            },
+            link: {
+                type: String
             }
         },{timestamps: true})}]
-})
+},{timestamps: true})
 
 const User = mongoose.model("user", userSchema);
 
