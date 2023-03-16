@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Notes from './Notes';
-import "./dashBoard.css";
+import "../dashBoard.css";
 
 const UserNotes = () =>{
     const [inputList,setInputList] = useState("");

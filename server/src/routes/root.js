@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('../models/User')
+const Project = require('../models/Project')
 const rootRoute = express.Router()
 
 rootRoute.post('/register',async (req,res)=>{
@@ -32,21 +33,21 @@ rootRoute.post('/register',async (req,res)=>{
 rootRoute.post('/login', async (req,res)=>{
     const {log, password, type} = req.body
 
-    let user1
+    let existingUser
     if(type==='email')
-        user1 = await User.findOne({email: log})
+    existingUser = await User.findOne({email: log})
     else
-        user1 = await User.findOne({username: log})
-    if(user1){
-        if(user1.password===password){
-            res.send({message: user1})
+    existingUser= await User.findOne({username: log})
+    if(existingUser){
+        if(existingUser.password===password){
+            res.send({status : 'ok' , message: existingUser})
         }
         else{
-            res.send({message: "password mismatch"})
+            res.send({status : 'bad' , message: "password mismatch"})
         }
     }
     else{
-        res.send({message: "wrong credentials!!"})
+        res.send({status : 'bad' , message: "wrong credentials!!"})
     }
 })
 

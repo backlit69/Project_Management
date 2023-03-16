@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React,{useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 import Header from './Header';
 
-function Login(){
+function Login(props){
     const usernamePattern = /^[a-zA-Z0-9_]+$/
+    const history = useNavigate();
     const [user, setUser] = useState({
         email:"",
         password:"",
@@ -28,7 +29,22 @@ function Login(){
             type= 'email'
         }
         axios.post('http://127.0.0.1:5500/login',{log: user.email,password: user.password, type: type})
-        .then((res)=>console.log(res)).catch((err)=>console.log(err))
+        .then((res)=>{  console.log(res.data.message)
+                        if(res.data.status == 'ok')
+                        { props.setUser(
+                           res.data.message 
+                         )
+                         window.localStorage.setItem("project-Management",JSON.stringify(user))
+                         history('/dashboard')
+                        }else{
+                            props.setUser(
+                                null
+                            )
+                        }
+                         
+        
+                    }
+    ).catch((err)=>console.log(err))
     }
 
     return <>
@@ -38,7 +54,7 @@ function Login(){
                 <div className="col-md-4 text-center p-1 p-3" id='card'>
                 <form action="">
                     <h3 className='text-center text-light p-3 logndSign'>
-                    <Link to="/">Login</Link> / <Link to="signup">Register</Link>
+                    <Link to="/">Login</Link> / <Link to="/signup">Register</Link>
                     </h3>
                     <br />
                     <input type="text" name="email" className='m-3' value={user.email} placeholder='Username' onChange={handleChange}/>
