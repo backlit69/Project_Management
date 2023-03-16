@@ -1,11 +1,19 @@
 const express = require('express')
-const User = require('../models/User')
-const jwt = require('jsonwebtoken')
-const Project = require('../models/Project')
 const rootRoute = express.Router()
-const {register, login} = require('../handlers/loginSignup')
+const {register, login, logout} = require('../handlers/loginSignup')
+const {isLoggedIn} = require('../middlewares/auth')
+const {dashboard} = require('../handlers/dashboard')
+
 rootRoute.post('/register',register)
 
 rootRoute.post('/login',login)
+
+rootRoute.post('/logout',logout)
+
+rootRoute.post('/isLoggedIn', isLoggedIn)
+
+rootRoute.post('/dashboard', dashboard)
+
+// rootRoute.post('/checkLogin', )
 
 module.exports = rootRoute
