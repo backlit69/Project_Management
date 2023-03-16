@@ -1,8 +1,18 @@
 import React from "react";
 import AddProjectPopUp from "./AddProjectPopUp";
-import user from "./images/user.png";
+import user from "../images/user.png";
+import { useNavigate } from "react-router-dom";
 
-const DashBoardNavbar = () => {
+const DashBoardNavbar = (props) => {
+    const history = useNavigate()
+    const logout = () =>{
+        window.localStorage.removeItem("project-Management",JSON.stringify(user))
+        history('/')
+        props.setUser()
+    }
+
+    
+
     return (
         <>
             <div className="container-fluid bg-dark p-1">
@@ -11,7 +21,7 @@ const DashBoardNavbar = () => {
                         <h1><AddProjectPopUp/></h1>
                     </div>
                     <div className="col-md-3 mt-2">
-                        <button className="btn" >
+                        <button className="btn" onClick={logout}>
                             LogOut <img src={user} alt="" className="navImg m-2" />
                         </button> 
                     </div>

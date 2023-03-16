@@ -4,10 +4,12 @@ import NotesSection from "./NotesSection";
 import ProjectNameSection from './ProjectNameSection';
 import Deadline from "./Deadline";
 
-const UserDashBoard = () => {
+const UserDashBoard = (props) => {
+    console.log(props.user)
+    
     return (
         <>
-            <DashBoardNavbar />
+            <DashBoardNavbar user={props.user} setUser={props.setUser}/>
             <div className="container dashBoardContainer mt-5">
                 <div className="row text-center note-section p-4">
                     <NotesSection/>

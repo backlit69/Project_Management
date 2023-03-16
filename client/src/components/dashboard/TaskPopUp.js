@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './dashBoard.css';
+import '../dashBoard.css';
 
 const TaskPopUp = () => {
 
