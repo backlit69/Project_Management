@@ -28,25 +28,36 @@ function Login(props){
         else{
             type= 'email'
         }
-        axios.post('http://127.0.0.1:5500/login',{log: user.email,password: user.password, type: type})
-        .then((res)=>{  console.log(res.data.message)
-                        if(res.data.status == 'ok')
-                        { props.setUser(
-                           res.data.message 
-                         )
-                         window.localStorage.setItem("project-Management",JSON.stringify(user))
-                         history('/dashboard')
-                        }else{
-                            props.setUser(
-                                null
-                            )
-                        }
-                         
-        
-                    }
-    ).catch((err)=>console.log(err))
-    }
 
+        
+        let obj = {log: user.email, password: user.password, type: type}
+        
+        console.log(obj)
+        axios.post('http://127.0.0.1:5500/login',obj)
+                .then((response)=>{
+                        console.log(response.data)
+                        if(response.data.status==200){
+                            console.log(response.data.message)
+                            axios.post('http://127.0.0.1:5500/dashboard',{})
+                            .then((response_dash)=>{
+                                history('/dashboard')
+                                props.setUser(response_dash.data.message)
+                            })
+                            .catch((err)=>{
+                    console.log(err)
+                })
+                            
+                        }
+                        else{
+                            console.log("wierd output")
+                        }
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+        
+       
+    }
     return <>
     <Header/>
         <div className="container mt-5">
@@ -68,5 +79,6 @@ function Login(props){
             </div>
         </div>
     </>
+
 }
 export default Login;

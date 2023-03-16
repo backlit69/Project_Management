@@ -33,7 +33,7 @@ const register = async (req,res)=>{
 const login = async (req,res)=>{
     
     const {log, password, type} = req.body
-
+    console.log(req.body)
     let existingUser
     if(type==='email')
         existingUser = await User.findOne({email: log})

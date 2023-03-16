@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Project = require('../models/Project')
+const jwt = require('jsonwebtoken')
 
 const dashboard = async (req,res)=>{
     const user = await jwt.verify(req.cookies.jwt, process.env.SECRET_KEY)

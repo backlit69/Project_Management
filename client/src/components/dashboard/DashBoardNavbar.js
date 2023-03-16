@@ -2,11 +2,13 @@ import React from "react";
 import AddProjectPopUp from "./AddProjectPopUp";
 import user from "../images/user.png";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const DashBoardNavbar = (props) => {
     const history = useNavigate()
     const logout = () =>{
-        window.localStorage.removeItem("project-Management",JSON.stringify(user))
+       axios.post('http://127.0.0.1:5500/logout',{})
+       .then((res)=>{console.log("loggedout")})
         history('/')
         props.setUser()
     }
