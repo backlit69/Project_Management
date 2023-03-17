@@ -11,6 +11,7 @@ const App = () => {
     
     useEffect(()=>{
         // axios.defaults.withCredentials=true
+        axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('token');
         console.log("starting a call")
         axios.post('http://127.0.0.1:5500/isLoggedIn',{})
         .then((response)=>{

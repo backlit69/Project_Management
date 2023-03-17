@@ -42,8 +42,8 @@ const login = async (req,res)=>{
     if(existingUser){
         if(existingUser.password===password){
             const token = jwt.sign({_id: existingUser._id}, process.env.SECRET_KEY)
-            res.cookie("jwt",token,{httpOnly: true})
-            res.send({status: 200, message: "user successfully logged in"})
+            console.log(token)
+            res.cookie("jwt",token,{httpOnly: true, Path: '/',sameSite: "lax"}).send({token: token,status: 200, message: "user successfully logged in"})
         }
         else{
             res.send({status: 400, message: "password mismatch"})
