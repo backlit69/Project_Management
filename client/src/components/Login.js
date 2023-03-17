@@ -35,10 +35,14 @@ function Login(props){
         console.log(obj)
         axios.post('http://127.0.0.1:5500/login',obj)
                 .then((response)=>{
+                    console.log(response)
                         console.log(response.data)
                         if(response.data.status==200){
-                            console.log(response.data.message)
-                            axios.post('http://127.0.0.1:5500/dashboard',{})
+                            window.localStorage.setItem('token',response.data.token)
+                            axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('token');
+                            axios.post('http://127.0.0.1:5500/dashboard',{},{
+                                'Content-Type': 'application/json'
+                            })
                             .then((response_dash)=>{
                                 history('/dashboard')
                                 props.setUser(response_dash.data.message)

@@ -26,7 +26,7 @@ const User = require("../models/User");
 
 const isLoggedIn = async function(req, res,next){
     try{
-        const user = await jwt.verify(req.cookies.jwt, process.env.SECRET_KEY)
+        const user = await jwt.verify(req.get("authorization"), process.env.SECRET_KEY)
         existingUser = await User.findOne({_id: user._id})
         if(existingUser){
             res.send({status: 200, message: "user logged in"});

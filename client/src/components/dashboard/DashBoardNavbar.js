@@ -7,9 +7,8 @@ import axios from 'axios';
 const DashBoardNavbar = (props) => {
     const history = useNavigate()
     const logout = () =>{
-       axios.post('http://127.0.0.1:5500/logout',{})
-       .then((res)=>{console.log("loggedout")})
-        history('/')
+        window.localStorage.removeItem('token')
+        axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('token');
         props.setUser()
     }
 

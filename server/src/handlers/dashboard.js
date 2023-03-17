@@ -3,7 +3,7 @@ const Project = require('../models/Project')
 const jwt = require('jsonwebtoken')
 
 const dashboard = async (req,res)=>{
-    const user = await jwt.verify(req.cookies.jwt, process.env.SECRET_KEY)
+    const user = await jwt.verify(req.get("authorization"), process.env.SECRET_KEY)
     existingUser = await User.findOne({_id: user._id})
     let projects=[];
     for(const ele of existingUser.projects){
