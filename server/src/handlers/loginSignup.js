@@ -18,7 +18,11 @@ const register = async (req,res)=>{
                 name,
                 username,
                 email,
-                password
+                password,
+                projects: [],
+                prev_projects: [],
+                notes: [],
+                notifications: []
             })
             await user.save().then(()=>{
                 res.send({status: 200, message: "successfully registered the user"})
@@ -43,7 +47,7 @@ const login = async (req,res)=>{
         if(existingUser.password===password){
             const token = jwt.sign({_id: existingUser._id}, process.env.SECRET_KEY)
             console.log(token)
-            res.cookie("jwt",token,{httpOnly: true, Path: '/',sameSite: "lax"}).send({token: token,status: 200, message: "user successfully logged in"})
+            res.send({token: token,status: 200, message: "user successfully logged in"})
         }
         else{
             res.send({status: 400, message: "password mismatch"})
@@ -55,10 +59,7 @@ const login = async (req,res)=>{
 }
 
 const logout = function(req, res, next){
-    res.cookie("jwt",undefined,{
-        httpOnly:true
-    })
-    res.send({status: 200, message: "successful"})
+    res.send({status: 200, message: "successful", token: undefined})
 }
 
 module.exports = {register, login, logout}

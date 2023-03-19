@@ -11,7 +11,7 @@ const projectSchema = mongoose.Schema({
     },
     creator: {
         type: mongoose.Types.ObjectId,
-        ref: 'user',
+        ref: 'users',
         required: true
     },
     discussion: [{
@@ -19,170 +19,19 @@ const projectSchema = mongoose.Schema({
     }],
     leaders: [{
         type: mongoose.Types.ObjectId,
-        ref: 'user'
+        ref: 'users'
     }],
     members: {
         present: [{
             type: mongoose.Types.ObjectId,
-            ref: 'user'
+            ref: 'users'
         }],
         past: [{
             type: mongoose.Types.ObjectId,
-            ref: 'user'
-        }]
-    },
-    tasks: {
-        type: Map,
-        of : [{
-            type: new mongoose.Schema({
-                assignerId: {
-                    type: mongoose.Types.ObjectId,
-                    ref: 'user'
-                },
-                deadline: {
-                    type: Date,
-                    required: true
-                },
-                name: {
-                    type: String,
-                    required: true
-                },
-                description: {
-                    type: String,
-                    required: true
-                },
-                updates: [{
-                    type: new mongoose.Schema({
-                        updateId:{
-                            type: String,
-                            required: true
-                        },
-                        deadline: {
-                            type: Date,
-                            required: true
-                        },
-                        name: {
-                            type: String,
-                            required: true
-                        },
-                        description: {
-                            type: String,
-                            required: true
-                        },
-                        status: {
-                            type: String,
-                            required: true
-                        }
-                    },{timestamps: true})
-                }]
-            },{timestamps: true}),
-        }]
-    },
-    history: {
-        completed: [{
-            type: new mongoose.Schema({
-                userId:{
-                    type: mongoose.Types.ObjectId,
-                    ref: 'user'
-                },
-                taskId: {
-                    type: String
-                },
-                assignerId: {
-                    type: mongoose.Types.ObjectId,
-                    ref: 'user'
-                },
-                deadline: {
-                    type: Date,
-                    required: true
-                },
-                name: {
-                    type: String,
-                    required: true
-                },
-                description: {
-                    type: String,
-                    required: true
-                },
-                updates: [{
-                    type: new mongoose.Schema({
-                        updateId:{
-                            type: String,
-                            required: true
-                        },
-                        deadline: {
-                            type: Date,
-                            required: true
-                        },
-                        name: {
-                            type: String,
-                            required: true
-                        },
-                        description: {
-                            type: String,
-                            required: true
-                        },
-                        status: {
-                            type: String,
-                            required: true
-                        }
-                    },{timestamps: true})
-                }]
-            },{timestamps: true}),
-        }],
-        dropped: [{
-            type: new mongoose.Schema({
-                userId:{
-                    type: mongoose.Types.ObjectId,
-                    ref: 'user'
-                },
-                taskId: {
-                    type: String
-                },
-                assignerId: {
-                    type: mongoose.Types.ObjectId,
-                    ref: 'user'
-                },
-                deadline: {
-                    type: Date,
-                    required: true
-                },
-                name: {
-                    type: String,
-                    required: true
-                },
-                description: {
-                    type: String,
-                    required: true
-                },
-                updates: [{
-                    type: new mongoose.Schema({
-                        updateId:{
-                            type: String,
-                            required: true
-                        },
-                        deadline: {
-                            type: Date,
-                            required: true
-                        },
-                        name: {
-                            type: String,
-                            required: true
-                        },
-                        description: {
-                            type: String,
-                            required: true
-                        },
-                        status: {
-                            type: String,
-                            required: true
-                        }
-                    },{timestamps: true})
-                }]
-            },{timestamps: true}),
+            ref: 'users'
         }]
     }
-},{timestamps: true})
+})
 
 const Project = mongoose.model("project", projectSchema);
 
