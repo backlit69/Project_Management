@@ -9,21 +9,22 @@ const dashboard = async (req,res)=>{
     let projects=[];
     for(const ele of existingUser.projects){
         let existingProject = await Project.findOne({_id: ele.project})
-        let project;
+        let userTasks;
         if(existingProject.leaders.includes(existingUser._id)){
-            project=existingProject;
+            userTasks = await Task.find({projectId: existingProject._id});
         }
         else{
-            userTasks = existingProject.tasks.get(existingUser._id.toString())
-            project = {
-                name: existingProject.name,
-                description: existingProject.description,
-                creator: existingProject.creator,
-                leaders: existingProject.leaders,
-                discussion: existingProject.discussion,
-                tasks: userTasks,
-                members: existingProject.members.present
-            }
+            userTasks = await Task.find({projectId: existingProject._id, userId: user._id});
+        }
+        
+        let project = {
+            name: existingProject.name,
+            description: existingProject.description,
+            creator: existingProject.creator,
+            leaders: existingProject.leaders,
+            discussion: existingProject.discussion,
+            tasks: userTasks,
+            members: existingProject.members.present
         }
         projects.push(project);
     };
