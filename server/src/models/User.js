@@ -20,28 +20,43 @@ const userSchema = mongoose.Schema({
     projects : [{
         type: new mongoose.Schema({
             project: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'project',
-                required: true
+                type: mongoose.Types.ObjectId,
+                ref: 'projects'
             }
         },{timestamps: true})
+    }],
+    prev_projects : [{
+        type: new mongoose.Schema({
+            project:{
+                type: mongoose.Types.ObjectId,
+                ref: 'projects'
+            }
+        })
     }],
     notes : [{
         type: new mongoose.Schema({
             text: {
-                type: String
+                type: String,
+                required: true
             }
         },{timestamps: true})}],
     notifications: [{
         type: new mongoose.Schema({
             category: {
-                type: String
+                type: String,
+                required: true
             },
             text: {
-                type: String
+                type: String,
+                required: true
             },
-            link: {
-                type: String
+            invite: {
+                leaderId: {
+                    type: String,
+                },
+                projectId: {
+                    type: String,
+                }
             }
         },{timestamps: true})}]
 },{timestamps: true})
