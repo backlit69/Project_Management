@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Project = require('../models/Project')
 const jwt = require('jsonwebtoken');
+const Task = require('../models/Task');
 
 const addTask = async (req, res)=>{
     try {
@@ -9,7 +10,7 @@ const addTask = async (req, res)=>{
 
         const {leaders} = await Project.findOne({_id: projectId},{leaders: 1, _id: 0})
         if(leaders.include(user._id)){
-            
+            Task
         }
         else{
             res.send({status: 400, message: "the user is not a leader so cant assign task"})

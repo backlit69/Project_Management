@@ -34,6 +34,5 @@ rootRoute.post('/dashboard/memberRemove', removeMember)
 rootRoute.post('/dashboard/memberReplace', replaceMember)
 
 rootRoute.post('/dashboard/makeLeader', makeLeader)
-// rootRoute.post('/checkLogin', )
 
 module.exports = rootRoute

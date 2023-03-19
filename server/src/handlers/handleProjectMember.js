@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Project = require('../models/Project')
 const jwt = require('jsonwebtoken');
+const Task = require('../models/Task');
 
 const addMemberRequest = async(req,res)=>{
     try{   
