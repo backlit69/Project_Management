@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
                 type: mongoose.Types.ObjectId,
                 ref: 'projects'
             }
-        },{timestamps: true})
+        })
     }],
     prev_projects : [{
         type: new mongoose.Schema({
